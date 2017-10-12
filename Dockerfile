@@ -17,6 +17,7 @@ RUN \
     git \
     make \
     unzip \
+    zip \
   && \
   rm -rf /var/lib/apt/lists/*
 
@@ -38,3 +39,7 @@ RUN \
     'build-tools;26.0.2' \
     'platforms;android-25' \
   )
+RUN \
+  curl -s "https://get.sdkman.io" | bash && \
+  source "/root/.sdkman/bin/sdkman-init.sh" && \
+  sdk install gradle 4.2.1
