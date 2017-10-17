@@ -1,5 +1,6 @@
 build:
   image: docker
+
   stage:
     build
   before_script:
