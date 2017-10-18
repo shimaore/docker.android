@@ -1,0 +1,11 @@
+build:
+  image: docker
+
+  stage:
+    build
+  before_script:
+    - docker login -u gitlab-ci-token -p ${CI_BUILD_TOKEN} ${CI_REGISTRY}
+  script:
+    - echo "Création image ${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}"
+    - docker build --no-cache -t "${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}" .
+    - docker push "${CI_REGISTRY_IMAGE}:${CI_BUILD_REF_NAME}"
