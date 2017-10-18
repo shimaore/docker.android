@@ -40,5 +40,5 @@ RUN \
     'platforms;android-25' \
   )
 RUN curl -s "https://get.sdkman.io" | bash
-ADD sdkman.sh
+ADD sdkman.sh .
 RUN bash sdkman.sh
