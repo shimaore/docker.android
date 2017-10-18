@@ -27,8 +27,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV ANDROID_ZIP sdk-tools-linux-3859397.zip
 RUN \
-  curl -O https://dl.google.com/android/repository/$ANDROID_ZIP && \
-  unzip -d $ANDROID_HOME $ANDROID_ZIP && \
+  curl -s -O https://dl.google.com/android/repository/$ANDROID_ZIP && \
+  unzip -qq -d $ANDROID_HOME $ANDROID_ZIP && \
   rm $ANDROID_ZIP
 ENV PATH $PATH:$ANDROID_HOME/tools
 
@@ -39,7 +39,6 @@ RUN \
     'build-tools;26.0.2' \
     'platforms;android-25' \
   )
-RUN \
-  curl -s "https://get.sdkman.io" | bash && \
-  source "/root/.sdkman/bin/sdkman-init.sh" && \
-  sdk install gradle 4.2.1
+RUN curl -s "https://get.sdkman.io" | bash
+ADD sdkman.sh .
+RUN bash sdkman.sh
