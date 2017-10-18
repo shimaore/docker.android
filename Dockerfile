@@ -27,8 +27,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV ANDROID_ZIP sdk-tools-linux-3859397.zip
 RUN \
-  curl -O https://dl.google.com/android/repository/$ANDROID_ZIP && \
-  unzip -d $ANDROID_HOME $ANDROID_ZIP && \
+  curl -s -O https://dl.google.com/android/repository/$ANDROID_ZIP && \
+  unzip -qq -d $ANDROID_HOME $ANDROID_ZIP && \
   rm $ANDROID_ZIP
 ENV PATH $PATH:$ANDROID_HOME/tools
 
