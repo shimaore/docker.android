@@ -39,6 +39,13 @@ RUN \
     'build-tools;26.0.2' \
     'platforms;android-25' \
   )
-RUN curl -s "https://get.sdkman.io" | bash
-ADD sdkman.sh .
-RUN bash sdkman.sh
+
+ENV GRADLE_VERSION 4.2.1
+RUN \
+  mkdir /opt/gradle && \
+  cd /opt/gradle && \
+  curl -O -L https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
+  unzip -d /opt/gradle gradle-$GRADLE_VERSION-bin.zip && \
+  rm gradle-$GRADLE_VERSION-bin.zip
+
+ENV PATH $PATH:/opt/gradle/gradle-$GRADLE_VERSION/bin
